@@ -5,12 +5,14 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ServAutenJwt.DTOs;
+using ServAutenJwt.Interface;
 
 namespace ServAutenJwt.Controllers
 {
@@ -21,20 +23,25 @@ namespace ServAutenJwt.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
+        private readonly IUser _user;
 
         public AutorizaController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager, IConfiguration configuration)
+            SignInManager<IdentityUser> signInManager, IConfiguration configuration, IUser user)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            _user = user;
         }
 
-        [HttpGet]
-        public ActionResult<string> Get()
+        [Authorize]
+        [HttpGet("Authenticated")]
+        public UsuarioDTO Get()
         {
-            return "AutorizaController ::  Acessado em  : "
-               + DateTime.Now.ToLongDateString();
+            UsuarioDTO usuario = new UsuarioDTO();
+            usuario.IsAuthenticated = _user.IsAuthenticated();
+            usuario.Email = _user.Name;
+            return usuario;
         }
 
         [HttpPost("register")]
@@ -124,6 +131,13 @@ namespace ServAutenJwt.Controllers
                 Message = "Token JWT OK"
             };
         }
+        
+        [HttpPost("logout")]
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
+        }
     }
+
 
 }
