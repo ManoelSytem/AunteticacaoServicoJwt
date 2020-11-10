@@ -7,7 +7,7 @@ using ServAutenJwt.Context;
 
 namespace ServAutenJwt.Migrations
 {
-    [DbContext(typeof(Context.AppContext))]
+  
     partial class AppContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

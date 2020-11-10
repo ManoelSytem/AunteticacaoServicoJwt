@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using ServAutenJwt.DTOs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +20,7 @@ namespace ServAutenJwt.Context
                 
         }
 
+        public DbSet<UsuarioDTO> UsuarioDTO { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -30,6 +33,7 @@ namespace ServAutenJwt.Context
                        GetConnectionString("DefaultConnection");
 
                 optionsBuilder.UseMySql(connectionString);
+                
             }
         }
     }

@@ -16,7 +16,6 @@ namespace ServAutenJwt.Servico
         {
             _accessor = accessor;
         }
-
         public string Name => _accessor.HttpContext.User.Identity.Name;
 
         public bool IsAuthenticated()

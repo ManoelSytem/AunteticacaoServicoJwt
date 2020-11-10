@@ -8,9 +8,9 @@ using ServAutenJwt.Context;
 
 namespace ServAutenJwt.Migrations
 {
-    [DbContext(typeof(Context.AppContext))]
-    [Migration("20200902135041_Identity")]
-    partial class Identity
+   
+    [Migration("20201110141010_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

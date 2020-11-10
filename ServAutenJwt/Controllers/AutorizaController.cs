@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ServAutenJwt.DTOs;
 using ServAutenJwt.Interface;
+using ServAutenJwt.Model;
 
 namespace ServAutenJwt.Controllers
 {
@@ -34,7 +35,6 @@ namespace ServAutenJwt.Controllers
             _user = user;
         }
 
-        [Authorize]
         [HttpGet("Authenticated")]
         public UsuarioDTO Get()
         {
@@ -43,7 +43,7 @@ namespace ServAutenJwt.Controllers
             usuario.Email = _user.Name;
             return usuario;
         }
-
+        
         [HttpPost("register")]
         public async Task<ActionResult> RegisterUser([FromBody] UsuarioDTO model)
         {
@@ -61,12 +61,22 @@ namespace ServAutenJwt.Controllers
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
+
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
             }
 
-            await _signInManager.SignInAsync(user, false);
+            var context = new Context.AppContext();
+            var usuario = new UsuarioDTO()
+            {
+                Email = model.Email,
+                Password = model.Password,
+            };
+
+            context.UsuarioDTO.Add(usuario);
+            context.SaveChanges();
+
             return Ok(GeraToken(model));
         }
 
@@ -79,18 +89,21 @@ namespace ServAutenJwt.Controllers
                 return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
             }
 
-            //verifica as credenciais do usuário e retorna um valor
-            var result = await _signInManager.PasswordSignInAsync(userInfo.Email,
-                userInfo.Password, isPersistent: false, lockoutOnFailure: false);
-
-            if (result.Succeeded)
+            var context = new Context.AppContext();
+            var result = context.UsuarioDTO.Select(user => user.Email == userInfo.Email && user.Password == userInfo.Password).FirstOrDefault();
+           
+            if (result)
             {
                 return Ok(GeraToken(userInfo));
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Login Inválido....");
-                return BadRequest(ModelState);
+                var resultApi = new ResultApi
+                {
+                    code = "Login",
+                    description = "Login Inválido...."
+                };
+                return BadRequest(resultApi);
             }
         }
 

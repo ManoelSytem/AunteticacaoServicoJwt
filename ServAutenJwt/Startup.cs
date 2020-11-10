@@ -27,6 +27,7 @@ namespace ServAutenJwt
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -35,14 +36,13 @@ namespace ServAutenJwt
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
             services.AddDbContext<Context.AppContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                   .AddEntityFrameworkStores<Context.AppContext>()
                   .AddDefaultTokenProviders();
-
+          
             services.AddAuthentication(
             JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(options =>
@@ -59,7 +59,16 @@ namespace ServAutenJwt
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();
-
+            services.AddMvc().AddRazorPagesOptions(o => o.Conventions.AddAreaFolderRouteModelConvention("Identity", "/Account/", model =>
+            {
+                foreach (var selector in model.Selectors)
+                {
+                    var attributeRouteModel = selector.AttributeRouteModel;
+                    attributeRouteModel.Order = -1;
+                    attributeRouteModel.Template = attributeRouteModel.Template.Remove(0, "Identity".Length);
+                }
+            })
+             ).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,6 +92,8 @@ namespace ServAutenJwt
             {
                 endpoints.MapControllers();
             });
+
+
         }
     }
 }
