@@ -36,12 +36,11 @@ namespace ServAutenJwt.Controllers
         }
 
         [HttpGet("Authenticated")]
-        public UsuarioDTO Get()
+        public UsuarioDTO Get(string login, string password)
         {
-            UsuarioDTO usuario = new UsuarioDTO();
-            usuario.IsAuthenticated = _user.IsAuthenticated();
-            usuario.Email = _user.Name;
-            return usuario;
+            var context = new Context.AppContext();
+            var result = context.UsuarioDTO.Where(user => user.Email == login && user.Password == password).FirstOrDefault();
+            return result;
         }
         
         [HttpPost("register")]
@@ -72,6 +71,7 @@ namespace ServAutenJwt.Controllers
             {
                 Email = model.Email,
                 Password = model.Password,
+                IsAuthenticated = true
             };
 
             context.UsuarioDTO.Add(usuario);
@@ -88,12 +88,17 @@ namespace ServAutenJwt.Controllers
             {
                 return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
             }
-
+            
             var context = new Context.AppContext();
-            var result = context.UsuarioDTO.Select(user => user.Email == userInfo.Email && user.Password == userInfo.Password).FirstOrDefault();
-           
-            if (result)
+            var result = context.UsuarioDTO.Where(user => user.Email == userInfo.Email && user.Password == userInfo.Password).FirstOrDefault();
+                   
+            if (result != null)
             {
+                var contextUser = new Context.AppContext();
+                var resultUser = contextUser.UsuarioDTO.Where(user => user.Email == userInfo.Email && user.Password == userInfo.Password).FirstOrDefault();
+                resultUser.IsAuthenticated = true;
+                contextUser.UsuarioDTO.Update(resultUser);
+                contextUser.SaveChanges();
                 return Ok(GeraToken(userInfo));
             }
             else
