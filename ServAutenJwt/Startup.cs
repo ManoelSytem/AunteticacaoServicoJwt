@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +37,12 @@ namespace ServAutenJwt
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "Open",
+                    builder => builder.AllowAnyOrigin().AllowAnyHeader());
+            });
             services.AddControllers();
             services.AddDbContext<Context.AppContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
@@ -42,19 +50,19 @@ namespace ServAutenJwt
             services.AddIdentity<IdentityUser, IdentityRole>()
                   .AddEntityFrameworkStores<Context.AppContext>()
                   .AddDefaultTokenProviders();
-          
+
             services.AddAuthentication(
             JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(options =>
             options.TokenValidationParameters = new TokenValidationParameters
             {
-               ValidateIssuer = true,
-               ValidateAudience = true,
-               ValidateLifetime = true,
-               ValidAudience = Configuration["TokenConfiguration:Audience"],
-               ValidIssuer = Configuration["TokenConfiguration:Issuer"],
-               ValidateIssuerSigningKey = true,
-               IssuerSigningKey = new SymmetricSecurityKey(
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidAudience = Configuration["TokenConfiguration:Audience"],
+                ValidIssuer = Configuration["TokenConfiguration:Issuer"],
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(
                    Encoding.UTF8.GetBytes(Configuration["Jwt:key"]))
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -69,6 +77,7 @@ namespace ServAutenJwt
                 }
             })
              ).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            // services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(@"C:\www\Chaves"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,11 +88,11 @@ namespace ServAutenJwt
                 app.UseDeveloperExceptionPage();
             }
 
-           
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("Open");
             app.UseAuthorization();
 
             app.UseAuthentication();
