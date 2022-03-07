@@ -116,7 +116,6 @@ C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Debu
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\ServAutenJwt.csprojAssemblyReference.cache
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\ServAutenJwt.AssemblyInfoInputs.cache
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\ServAutenJwt.AssemblyInfo.cs
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\ServAutenJwt.RazorTargetAssemblyInfo.cache
@@ -158,3 +157,5 @@ C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Debu
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\ServAutenJwt.csproj.CoreCompileInputs.cache
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\ServAutenJwt.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\scopedcss\bundle\ServAutenJwt.styles.css
+C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\ServAutenJwt.csproj.AssemblyReference.cache
+C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Debug\netcoreapp3.1\ServAutenJwt.GeneratedMSBuildEditorConfig.editorconfig

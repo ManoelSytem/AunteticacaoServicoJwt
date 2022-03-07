@@ -90,12 +90,21 @@ namespace ServAutenJwt.Controllers
             }
             
             var context = new Context.AppContext();
-            var result = context.UsuarioDTO.Where(user => user.Email == userInfo.Email && user.Password == userInfo.Password).FirstOrDefault();
-                   
-            if (result != null)
+
+            var result = from usuario in context.UsuarioDTO
+                         where usuario.Email == userInfo.Email && usuario.Password == userInfo.Password
+                         select new UsuarioDTO
+                         {
+                             Email = usuario.Email,
+                             Password = usuario.Password,
+                             IsAuthenticated = true
+                          };
+
+            var resultUser = result.Where(user => user.Email == userInfo.Email && user.Password == userInfo.Password).FirstOrDefault();
+
+            if (resultUser != null)
             {
                 var contextUser = new Context.AppContext();
-                var resultUser = contextUser.UsuarioDTO.Where(user => user.Email == userInfo.Email && user.Password == userInfo.Password).FirstOrDefault();
                 resultUser.IsAuthenticated = true;
                 contextUser.UsuarioDTO.Update(resultUser);
                 contextUser.SaveChanges();
