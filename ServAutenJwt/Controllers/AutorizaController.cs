@@ -38,8 +38,12 @@ namespace ServAutenJwt.Controllers
         [HttpGet("Authenticated")]
         public UsuarioDTO Get(string login, string password)
         {
-            var context = new Context.AppContext();
-            var result = context.UsuarioDTO.Where(user => user.Email == login && user.Password == password).FirstOrDefault();
+            var result = new UsuarioDTO();
+            using (var context = new Context.AppContext())
+            {
+                result = context.UsuarioDTO.Where(user => user.Email == login && user.Password == password && user.IsAuthenticated == true).FirstOrDefault();
+            }
+            
             return result;
         }
         
@@ -98,16 +102,17 @@ namespace ServAutenJwt.Controllers
                              Email = usuario.Email,
                              Password = usuario.Password,
                              IsAuthenticated = true
-                          };
+                         };
 
             var resultUser = result.Where(user => user.Email == userInfo.Email && user.Password == userInfo.Password).FirstOrDefault();
 
             if (resultUser != null)
             {
-                var contextUser = new Context.AppContext();
-                resultUser.IsAuthenticated = true;
-                contextUser.UsuarioDTO.Update(resultUser);
-                contextUser.SaveChanges();
+                context.UsuarioDTO
+                .Where(user => user.Email == resultUser.Email)
+                .ToList()
+                .ForEach(x => x.IsAuthenticated = true);
+                context.SaveChanges();
                 return Ok(GeraToken(userInfo));
             }
             else
