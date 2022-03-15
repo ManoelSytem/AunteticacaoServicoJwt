@@ -1,6 +1,5 @@
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\win-x64\appsettings.Development.json
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\win-x64\appsettings.json
-C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\win-x64\Properties\launchSettings.json
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\win-x64\ServAutenJwt.exe
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\win-x64\ServAutenJwt.deps.json
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\win-x64\ServAutenJwt.runtimeconfig.json
@@ -150,3 +149,5 @@ C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Rele
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\win-x64\ServAutenJwt.dll
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\win-x64\ServAutenJwt.pdb
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\win-x64\ServAutenJwt.genruntimeconfig.cache
+C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\win-x64\ServAutenJwt.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\win-x64\scopedcss\bundle\ServAutenJwt.styles.css

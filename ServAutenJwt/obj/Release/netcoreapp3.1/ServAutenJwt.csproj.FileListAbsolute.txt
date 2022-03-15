@@ -115,7 +115,6 @@ C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Rele
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\ServAutenJwt.csprojAssemblyReference.cache
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\ServAutenJwt.AssemblyInfoInputs.cache
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\ServAutenJwt.AssemblyInfo.cs
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\ServAutenJwt.csproj.CoreCompileInputs.cache
@@ -157,3 +156,5 @@ C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Rele
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.ServiceProcess.ServiceController.dll
 C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\scopedcss\bundle\ServAutenJwt.styles.css
+C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\ServAutenJwt.csproj.AssemblyReference.cache
+C:\Users\Tees\source\repos\ServicoAutenticacaoIntegradaJwt\ServAutenJwt\obj\Release\netcoreapp3.1\ServAutenJwt.GeneratedMSBuildEditorConfig.editorconfig
