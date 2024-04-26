@@ -32,7 +32,7 @@ namespace ServAutenJwt.Context
                 var connectionString = configuration.
                        GetConnectionString("DefaultConnection");
 
-                optionsBuilder.UseMySql(connectionString);
+                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
                 
             }
         }

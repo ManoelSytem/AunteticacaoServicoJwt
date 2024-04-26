@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -44,9 +45,13 @@ namespace ServAutenJwt
                     "Open",
                     builder => builder.AllowAnyOrigin().AllowAnyHeader());
             });
+
+            var connectionString = Configuration.
+                 GetConnectionString("DefaultConnection");
+
             services.AddControllers();
             services.AddDbContext<Context.AppContext>(options =>
-            options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                   .AddEntityFrameworkStores<Context.AppContext>()
